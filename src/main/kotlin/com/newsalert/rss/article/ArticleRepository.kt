@@ -1,8 +1,8 @@
 package com.newsalert.rss.article
 
+import org.bson.types.ObjectId
 import org.springframework.data.mongodb.repository.MongoRepository
-import java.time.Instant
 
-interface ArticleRepository : MongoRepository<Article, String> {
+interface ArticleRepository : MongoRepository<Article, ObjectId> {
     fun findByLink(link: String): Article?
 }
