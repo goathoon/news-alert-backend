@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: news-alert
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/newsalert
+
+rss:
+  feeds:
+    - https://www.yna.co.kr/rss/economy.xml

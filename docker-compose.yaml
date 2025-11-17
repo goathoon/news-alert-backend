@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  mongo:
+    image: mongo:7
+    container_name: dev-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    command: ["--wiredTigerCacheSizeGB", "1"]
+    # 테스트용이니 인증 없이 실행 (실서비스에서는 꼭 auth 설정!)
+
+  mongo-express:
+    image: mongo-express:1.0.2
+    container_name: dev-mongo-express
+    depends_on:
+      - mongo
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017/
+      ME_CONFIG_BASICAUTH: "false"   # 테스트용이라 로그인 없이 접근
+
+volumes:
+  mongo_data:
